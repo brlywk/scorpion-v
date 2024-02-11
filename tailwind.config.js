@@ -2,6 +2,10 @@
 export default {
     content: [],
     theme: {
+        fontFamily: {
+            sans: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"],
+            display: ["Acme", "sans-serif"],
+        },
         extend: {},
     },
     plugins: [],
