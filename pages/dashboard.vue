@@ -13,6 +13,8 @@ const { newDialog } = uiDialogStore;
 
 <template>
     <MainWrapper>
+        <ScrollToTop />
+
         <h1 class="font-xl font-bold">
             Welcome to the dashboard page
         </h1>
@@ -21,16 +23,35 @@ const { newDialog } = uiDialogStore;
         <hr>
 
         <UiNotifications />
-        <button @click="addNotification('error', `Hello there ${Math.floor(Math.random() * 42)}`)">
-            Add notification
-        </button>
+        <div class="flex flex-row gap-4 py-4">
+            <button @click="addNotification('info', `Hello there ${Math.floor(Math.random() * 42)}`)">
+                Add info
+            </button>
+            <button @click="addNotification('success', `Hello there ${Math.floor(Math.random() * 42)}`)">
+                Add success
+            </button>
+            <button @click="addNotification('warning', `Hello there ${Math.floor(Math.random() * 42)}`)">
+                Add warning
+            </button>
+            <button @click="addNotification('error', `Hello there ${Math.floor(Math.random() * 42)}`)">
+                Add error
+            </button>
+        </div>
 
         <hr>
 
         <UiDialog />
-        <button @click="newDialog('question', 'Sup?', 'All cool?')">
-            Ask for confirmation
-        </button>
+        <div class="flex flex-row gap-4 py-4">
+            <button @click="newDialog('info', 'Sup?', 'All cool?')">
+                Dialog info
+            </button>
+            <button @click="newDialog('question', 'Sup?', 'All cool?')">
+                Dialog question
+            </button>
+            <button @click="newDialog('warning', 'Sup?', 'All cool?')">
+                Dialog warning
+            </button>
+        </div>
         <pre>{{ userResponse }}</pre>
 
         <p class="my-16">
