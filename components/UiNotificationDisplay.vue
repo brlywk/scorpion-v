@@ -57,7 +57,14 @@ onUnmounted(() => {
         >
             <!-- Notificaton progress bar -->
             <div class="min-h-1 absolute top-0 w-full">
-                <div class="h-1 origin-left bg-gray-300" :style="progressStyle" />
+                <div
+                    :class="cl('h-1 origin-left', {
+                        'bg-gray-300': notification.type === 'info',
+                        'bg-green-500': notification.type === 'success',
+                        'bg-amber-500': notification.type === 'warning',
+                        'bg-red-500': notification.type === 'error',
+                    })" :style="progressStyle"
+                />
             </div>
 
             <!-- Notification panel -->
