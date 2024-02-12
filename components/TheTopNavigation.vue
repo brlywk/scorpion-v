@@ -7,7 +7,7 @@ type NavLink = {
 const navigation: NavLink[] = [
     { label: "Dashboard", to: "/dashboard" },
     { label: "Expenses", to: "/expenses" },
-    { label: "Subscriptions", to: "/subscriptions" },
+    { label: "Usage", to: "/usage" },
     { label: "Incomes", to: "/incomes" },
 ];
 </script>

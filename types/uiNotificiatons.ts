@@ -1,8 +1,8 @@
-const uiNotificationTypes = ["info", "success", "warning", "error"] as const;
+const uiNotificationTypeList = ["info", "success", "warning", "error"] as const;
 
-export type UiNotificationType = (typeof uiNotificationTypes)[number];
+export type UiNotificationType = (typeof uiNotificationTypeList)[number];
 export type UiNotificationMessage = {
     id: string;
-    type: (typeof uiNotificationTypes)[number];
+    type: (typeof uiNotificationTypeList)[number];
     message: string;
 };

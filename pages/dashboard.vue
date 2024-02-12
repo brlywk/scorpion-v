@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { useUiNotificationStore } from "~/stores/uiNotifications";
-
 definePageMeta({
     layout: "dashboard",
 });
 
 const uiNotificationStore = useUiNotificationStore();
 const { addNotification } = uiNotificationStore;
+
+const uiDialogStore = useUiDialogStore();
+const { userResponse } = storeToRefs(uiDialogStore);
+const { newDialog } = uiDialogStore;
 </script>
 
 <template>
@@ -15,11 +17,22 @@ const { addNotification } = uiNotificationStore;
             Welcome to the dashboard page
         </h1>
         <ExpensesList />
+
         <hr>
+
         <UiNotifications />
         <button @click="addNotification('error', `Hello there ${Math.floor(Math.random() * 42)}`)">
             Add notification
         </button>
+
+        <hr>
+
+        <UiDialog />
+        <button @click="newDialog('question', 'Sup?', 'All cool?')">
+            Ask for confirmation
+        </button>
+        <pre>{{ userResponse }}</pre>
+
         <p class="my-16">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod tempore id ipsam labore, dolore ratione.
             Obcaecati ad, nemo atque cupiditate sed necessitatibus blanditiis autem omnis at facere maiores vitae tenetur.
