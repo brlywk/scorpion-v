@@ -10,7 +10,7 @@ export const categories = sqliteTable("categories", {
         .primaryKey(),
     userId: text("user_id").notNull(),
     name: text("name").notNull(),
-    icon: text("icon").default("InboxIcon"),
+    icon: text("icon").default("InboxIcon").notNull(),
 });
 
 // ----- Schema & Types --------------------------

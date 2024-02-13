@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from "@headlessui/vue";
+import type { CategorySelect } from "~/db/schemas/categories";
 import type { ExpenseInsert } from "~/db/schemas/expenses";
 import { type Currency, billingCycleList, currencyList } from "~/db/types";
+
+const props = defineProps<{ categoryList: CategorySelect[] }>();
 
 const curList = ref(currencyList);
 const cycleList = ref(billingCycleList);
@@ -15,6 +18,7 @@ const defaultNewExpense: ExpenseInsert = {
 };
 const newExpense = reactive(defaultNewExpense);
 
+// Parse input and send to server for ritual blood magic
 function handleSubmit() {
     console.log(newExpense);
 }
@@ -77,6 +81,11 @@ function handleReset() {
                 </div>
             </RadioGroup>
         </div>
+
+        <!-- Categories -->
+        <pre>
+            {{ props.categoryList }}
+        </pre>
 
         <!-- Button -->
         <div class="mt-4 flex flex-row items-center justify-end gap-4 border-t border-t-gray-300 p-4">
