@@ -18,17 +18,21 @@ export const expenses = sqliteTable("expenses", {
     name: text("name").notNull(),
     image: text("image"),
     price: real("price").notNull(),
-    currency: text("currency").$type<Currency>().default("eur").notNull(),
+    currency: text("currency").$type<Currency>().default("EUR").notNull(),
     billingCycle: text("billing_cycle")
         .$type<BillingCycle>()
-        .default("monthly")
+        .default("Monthly")
         .notNull(),
     categoryId: text("category_id").default("TODO").notNull(),
     created: text("created").$defaultFn(() => new Date().toString()),
 });
 
 // TODO: change these when it becomes necessary
-export const expensesInsertSchema = createInsertSchema(expenses);
+// - Also unify if both stay the same in the end
+export const expensesInsertSchema = createInsertSchema(expenses, {
+    currency: z.enum(currencyList),
+    billingCycle: z.enum(billingCycleList),
+});
 export const expensesSelectSchema = createSelectSchema(expenses, {
     currency: z.enum(currencyList),
     billingCycle: z.enum(billingCycleList),
