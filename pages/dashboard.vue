@@ -54,6 +54,21 @@ const { newDialog } = uiDialogStore;
         </div>
         <pre>{{ userResponse }}</pre>
 
+        <hr>
+
+        <div class="flex gap-4 py-4">
+            <ButtonNeutral>Neutral</ButtonNeutral>
+            <ButtonNeutralLink>Neutral Link</ButtonNeutralLink>
+            <ButtonSuccess>Success</ButtonSuccess>
+            <ButtonSuccessLink>Success Link</ButtonSuccessLink>
+            <ButtonPrimary>Primary</ButtonPrimary>
+            <ButtonPrimaryLink>Primary link</ButtonPrimaryLink>
+            <ButtonDanger>Danger</ButtonDanger>
+            <ButtonDangerLink>Danger link</ButtonDangerLink>
+            <ButtonDark>Dark</ButtonDark>
+            <ButtonDarkLink>Dark link</ButtonDarkLink>
+        </div>
+
         <p class="my-16">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod tempore id ipsam labore, dolore ratione.
             Obcaecati ad, nemo atque cupiditate sed necessitatibus blanditiis autem omnis at facere maiores vitae tenetur.
