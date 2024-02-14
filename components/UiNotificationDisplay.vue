@@ -55,9 +55,9 @@ onUnmounted(() => {
             v-if="show"
             :class="cl('pointer-events-auto relative z-20 w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1', {
                 'ring-gray-300': notification.type === 'info',
-                'ring-green-500': notification.type === 'success',
+                'ring-green-600': notification.type === 'success',
                 'ring-amber-500': notification.type === 'warning',
-                'ring-red-500': notification.type === 'error',
+                'ring-red-600': notification.type === 'error',
             })"
         >
             <!-- Notificaton progress bar -->
@@ -65,9 +65,9 @@ onUnmounted(() => {
                 <div
                     :class="cl('h-1 origin-left', {
                         'bg-gray-300': notification.type === 'info',
-                        'bg-green-500': notification.type === 'success',
+                        'bg-green-600': notification.type === 'success',
                         'bg-amber-500': notification.type === 'warning',
-                        'bg-red-500': notification.type === 'error',
+                        'bg-red-600': notification.type === 'error',
                     })" :style="progressStyle"
                 />
             </div>
@@ -82,23 +82,23 @@ onUnmounted(() => {
                             aria-hidden="true"
                         />
                         <CheckCircleIcon
-                            v-else-if="notification.type === 'success'" class="h-6 w-6 text-green-500"
+                            v-else-if="notification.type === 'success'" class="h-6 w-6 text-green-600"
                             aria-hidden="true"
                         />
                         <ExclamationCircleIcon
                             v-else-if="notification.type === 'warning'" class="h-6 w-6 text-amber-500"
                             aria-hidden="true"
                         />
-                        <XCircleIcon v-else class="h-6 w-6 text-red-500" aria-hidden="true" />
+                        <XCircleIcon v-else class="h-6 w-6 text-red-600" aria-hidden="true" />
                     </div>
                     <div class="ml-3 w-0 flex-1 items-center">
                         <!-- Notification content -->
                         <p
                             :class="cl('text-sm', {
                                 'text-gray-500': notification.type === 'info',
-                                'text-green-500': notification.type === 'success',
+                                'text-green-600': notification.type === 'success',
                                 'text-amber-500': notification.type === 'warning',
-                                'text-red-500': notification.type === 'error' })"
+                                'text-red-600': notification.type === 'error' })"
                         >
                             {{ notification.message }}
                         </p>
