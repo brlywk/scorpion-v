@@ -53,7 +53,12 @@ onUnmounted(() => {
     >
         <div
             v-if="show"
-            class="pointer-events-auto relative w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+            :class="cl('pointer-events-auto relative z-20 w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1', {
+                'ring-gray-300': notification.type === 'info',
+                'ring-green-500': notification.type === 'success',
+                'ring-amber-500': notification.type === 'warning',
+                'ring-red-500': notification.type === 'error',
+            })"
         >
             <!-- Notificaton progress bar -->
             <div class="min-h-1 absolute top-0 w-full">

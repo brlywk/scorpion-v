@@ -83,9 +83,12 @@ function handleReset() {
         </div>
 
         <!-- Categories -->
-        <pre>
-            {{ props.categoryList }}
-        </pre>
+        <div>
+            <div v-for="c in props.categoryList" :key="c.id" class="flex flex-row items-center gap-2">
+                <IconDynamic :component-name="c.icon" />
+                <span class="text-sm">{{ c.name }}</span>
+            </div>
+        </div>
 
         <!-- Button -->
         <div class="mt-4 flex flex-row items-center justify-end gap-4 border-t border-t-gray-300 p-4">
