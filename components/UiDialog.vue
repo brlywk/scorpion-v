@@ -31,7 +31,7 @@ function handleCancel() {
                             <div class="sm:flex sm:items-start">
                                 <div
                                     :class="cl('mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10', {
-                                        'bg-red-500 text-white': activeDialog?.type === 'warning',
+                                        'bg-red-600 text-white': activeDialog?.type === 'warning',
                                         'bg-gray-100 text-gray-500': activeDialog?.type !== 'warning',
                                     })"
                                 >
@@ -60,22 +60,16 @@ function handleCancel() {
                             </div>
 
                             <!-- Buttons -->
-                            <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                                <button
-                                    type="button" :class="cl('inline-flex transition-all w-full justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm sm:ml-3 sm:w-auto', {
-                                        'text-red-500 border border-red-500 hover:bg-red-500 hover:text-white': activeDialog?.type === 'warning',
-                                        'text-gray-800 border border-gray-800 hover:bg-gray-800 hover:text-white': activeDialog?.type !== 'warning',
-                                    })" @click="handleOk"
-                                >
+                            <div class="mt-5 gap-4 sm:mt-4 sm:flex sm:flex-row-reverse">
+                                <ButtonDanger v-if="activeDialog?.type === 'warning'" @click="handleOk">
                                     Okay
-                                </button>
-                                <button
-                                    v-if="activeDialog?.type !== 'info'"
-                                    type="button" class="inline-flex w-full justify-center rounded-md border border-transparent px-3 py-2 text-sm font-semibold transition-all hover:border-gray-300 hover:shadow-sm sm:ml-3 sm:w-auto"
-                                    @click="handleCancel"
-                                >
+                                </ButtonDanger>
+                                <ButtonDark v-if="activeDialog?.type !== 'warning'" @click="handleOk">
+                                    Okay
+                                </ButtonDark>
+                                <ButtonNeutralLink v-if="activeDialog?.type !== 'info'" @click="handleCancel">
                                     Cancel
-                                </button>
+                                </ButtonNeutralLink>
                             </div>
                         </DialogPanel>
                     </TransitionChild>
