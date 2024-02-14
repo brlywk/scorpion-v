@@ -72,7 +72,7 @@ function handleReset() {
                 </RadioGroupLabel>
                 <div class="flex flex-row gap-4">
                     <RadioGroupOption v-for="cycle in cycleList" id="billingCycleOptions" :key="cycle" v-slot="{ active, checked }" as="template" :value="cycle">
-                        <div class="flex cursor-pointer items-center justify-center rounded-md px-3 py-3 text-sm font-semibold shadow-sm sm:flex-1" :class="[active ? 'ring-2 ring-amber-500 ring-offset-2' : '', checked ? 'bg-amber-500 text-white hover:bg-amber-400' : 'ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50']">
+                        <div class="flex cursor-pointer items-center justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm sm:flex-1" :class="[active ? 'ring-2 ring-amber-500 ring-offset-2' : '', checked ? 'bg-amber-500 text-white hover:bg-amber-400' : 'ring-1 ring-inset ring-gray-300 bg-white text-gray-900 hover:bg-gray-50']">
                             <RadioGroupLabel :id="cycle" as="span">
                                 {{ cycle }}
                             </RadioGroupLabel>
@@ -92,15 +92,12 @@ function handleReset() {
 
         <!-- Button -->
         <div class="mt-4 flex flex-row items-center justify-end gap-4 border-t border-t-gray-300 p-4">
-            <button type="reset" class="rounded-md border border-transparent px-3 py-2 text-sm font-semibold transition-all hover:border-amber-500 hover:text-amber-500 hover:shadow-sm">
+            <ButtonDangerLink type="reset">
                 Reset
-            </button>
-            <button type="submit" class="rounded-md border border-green-600 px-3 py-2 text-sm font-semibold text-green-600 shadow-sm transition-all hover:bg-green-600 hover:text-white">
+            </ButtonDangerLink>
+            <ButtonSuccess type="submit">
                 Submit
-            </button>
+            </ButtonSuccess>
         </div>
-        <ButtonBase class="border-gray-500 hover:bg-gray-300" @click="() => console.log('test')">
-            Test
-        </ButtonBase>
     </form>
 </template>
