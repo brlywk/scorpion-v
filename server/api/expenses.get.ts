@@ -9,7 +9,7 @@ export default defineEventHandler(async () => {
         const expensesList = await db.select().from(expenses).all();
         return expensesList;
     } catch (error: unknown) {
-        return createError({
+        throw createError({
             statusCode: 500,
             statusMessage: "Shit broke",
         });

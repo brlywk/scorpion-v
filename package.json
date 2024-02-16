@@ -24,6 +24,7 @@
     "vue-tsc": "^1.8.27"
   },
   "dependencies": {
+    "@headlessui/tailwindcss": "^0.2.0",
     "@headlessui/vue": "latest",
     "@heroicons/vue": "^2.1.1",
     "@libsql/client": "^0.4.3",

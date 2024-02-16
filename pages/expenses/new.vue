@@ -10,7 +10,7 @@ const { data: categoryList, pending, execute, status } = useFetch<CategorySelect
 
 <template>
     <MainWrapper>
-        <ExpenseForm :category-list="categoryList as CategorySelect[]" />
+        <ExpenseForm v-if="categoryList" :category-list="categoryList as CategorySelect[]" />
         <template #sidebar>
             Some intersting information will show up here
         </template>

@@ -10,10 +10,9 @@ export default defineEventHandler(async () => {
             .from(categories)
             .where(eq(categories.userId, "DEFAULT_CATEGORY"));
 
-        console.log("server:", categoryList);
         return categoryList;
     } catch (error: unknown) {
-        return createError({
+        throw createError({
             statusCode: 500,
             statusMessage: "Shit broke",
         });

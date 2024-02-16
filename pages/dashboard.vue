@@ -13,8 +13,6 @@ const { newDialog } = uiDialogStore;
 
 <template>
     <MainWrapper>
-        <ScrollToTop />
-
         <h1 class="font-xl font-bold">
             Welcome to the dashboard page
         </h1>
@@ -22,7 +20,6 @@ const { newDialog } = uiDialogStore;
 
         <hr>
 
-        <UiNotifications />
         <div class="flex flex-row gap-4 py-4">
             <button @click="addNotification('info', `Hello there ${Math.floor(Math.random() * 42)}`)">
                 Add info
@@ -40,7 +37,6 @@ const { newDialog } = uiDialogStore;
 
         <hr>
 
-        <UiDialog />
         <div class="flex flex-row gap-4 py-4">
             <button @click="newDialog('info', 'Sup?', 'All cool?')">
                 Dialog info

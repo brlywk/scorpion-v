@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from "@headlessui/vue";
 import type { CategorySelect } from "~/db/schemas/categories";
-import type { ExpenseInsert } from "~/db/schemas/expenses";
+import { type ExpenseInsert, expensesInsertSchema } from "~/db/schemas/expenses";
 import { type Currency, billingCycleList, currencyList } from "~/db/types";
+import { defaultCategoryId } from "~/config/defaults";
 
 const props = defineProps<{ categoryList: CategorySelect[] }>();
 
@@ -15,22 +16,33 @@ const defaultNewExpense: ExpenseInsert = {
     price: 0.00,
     currency: "EUR",
     billingCycle: "Monthly",
+    categoryId: defaultCategoryId,
 };
 const newExpense = reactive(defaultNewExpense);
 
 // Parse input and send to server for ritual blood magic
-function handleSubmit() {
-    console.log(newExpense);
+async function handleSubmit() {
+    const unsafeExpense = expensesInsertSchema.safeParse(newExpense);
+
+    if (!unsafeExpense.success) {
+        console.log(unsafeExpense.error);
+    } else {
+        console.log(unsafeExpense.data);
+        const response = await $fetch("/api/expenses", { method: "post", body: unsafeExpense.data, server: false });
+
+        console.log(response);
+    }
 }
 
 // We need to 'manually' reset some values
 function handleReset() {
     newExpense.billingCycle = "Monthly";
+    newExpense.categoryId = defaultCategoryId;
 }
 </script>
 
 <template>
-    <form class="flex flex-col rounded-lg border border-gray-300 bg-gray-50/40 shadow" @submit.prevent="handleSubmit" @reset="handleReset">
+    <form class="flex flex-col rounded-lg border bg-gray-50/40 shadow md:border-gray-300" @submit.prevent="handleSubmit" @reset="handleReset">
         <!-- Name -->
         <div class="p-4">
             <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
@@ -46,7 +58,7 @@ function handleReset() {
                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     <span class="text-gray-500 sm:text-sm">{{ currencySymbol(newExpense.currency as Currency) }}</span>
                 </div>
-                <input id="price" v-model="newExpense.price" type="text" name="price" class="block w-full rounded-md border-0 py-2 pl-8 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-500 focus-visible:outline-none sm:text-sm sm:leading-6" placeholder="0.00" @focus="(e) => (e.target as HTMLInputElement)?.select()">
+                <input id="price" v-model="newExpense.price" type="number" step=".01" min="0" name="price" class="block w-full rounded-md border-0 py-2 pl-8 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-500 focus-visible:outline-none sm:text-sm sm:leading-6" placeholder="0.00" @focus="(e) => (e.target as HTMLInputElement)?.select()">
                 <div class="absolute inset-y-0 right-0 flex items-center">
                     <label for="currency" class="sr-only">Currency</label>
                     <select id="currency" v-model="newExpense.currency" name="currency" class="h-full cursor-pointer rounded-md border-0 bg-transparent px-2 py-0 text-sm text-gray-500 focus:ring-2 focus:ring-inset focus:ring-amber-500 focus-visible:outline-none">
@@ -83,11 +95,9 @@ function handleReset() {
         </div>
 
         <!-- Categories -->
-        <div>
-            <div v-for="c in props.categoryList" :key="c.id" class="flex flex-row items-center gap-2">
-                <IconDynamic :component-name="c.icon" />
-                <span class="text-sm">{{ c.name }}</span>
-            </div>
+        <div class="p-4">
+            <label for="category" class="block text-sm font-medium leading-6 text-gray-900">Category</label>
+            <CategoryDropdown id="category" v-model="newExpense.categoryId" :category-list="props.categoryList" />
         </div>
 
         <!-- Button -->

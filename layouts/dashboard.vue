@@ -5,6 +5,9 @@
     <TheHeader />
     <NuxtPage />
     <TheFooter />
+    <ScrollToTop />
+    <UiNotifications />
+    <UiDialog />
 </template>
 
 <style>
