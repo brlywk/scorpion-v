@@ -3,6 +3,9 @@ import { expenses, expensesInsertSchema } from "~/db/schemas/expenses";
 
 export default defineEventHandler(async event => {
     try {
+        // DEBUG: Just a little slow down...
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
         const body = await readBody(event);
 
         const unsafeExpense = expensesInsertSchema.safeParse(body);
