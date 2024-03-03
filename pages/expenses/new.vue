@@ -5,7 +5,7 @@ definePageMeta({
     layout: "dashboard",
 });
 
-const { data: categoryList, pending, execute, status } = useFetch<CategorySelect[]>("/api/categories");
+const { data: categoryList } = useFetch<CategorySelect[]>("/api/categories");
 </script>
 
 <template>
